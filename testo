@@ -1,0 +1,62 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+
+class Point3D {
+public:
+
+	int x;
+	int y;
+	int z;
+
+	Point3D(int x, int y, int z) :
+		x(x), y(y), z(z) {}
+};
+
+class Vector3D {
+public:
+	Point3D pointStart;
+	Point3D pointEnd;
+	Vector3D(Point3D pointStart, Point3D pointEnd) :
+		pointStart(pointStart), pointEnd(pointEnd) {}
+};
+
+int main()
+{
+    //Объявление точек и вектора
+	Point3D point1(1, 2, 3); //Основная точка
+	Point3D pointStart(2, 3, 4); //Точки для вектора
+	Point3D pointEnd(6, 5, 4);
+	Vector3D Vector1(pointStart, pointEnd); 
+	Vector3D Vector2(point1, pointEnd);
+
+	std::cout << "Summ P, V";
+	int i, j, k;
+	i = point1.x + (Vector1.pointEnd.x - Vector1.pointStart.x);
+	j = point1.y + (Vector1.pointEnd.y - Vector1.pointStart.y);
+	k = point1.z + (Vector1.pointEnd.z - Vector1.pointStart.z);
+	Point3D pointSummPV(i, j, k);
+	std::cout << "pointSummPV(" << pointSummPV.x << ", " << pointSummPV.y << ", " << pointSummPV.z << ")   ";
+
+	std::cout << "Minus P, V";
+	i = point1.x - (Vector1.pointEnd.x - Vector1.pointStart.x);
+	j = point1.y - (Vector1.pointEnd.y - Vector1.pointStart.y);
+	k = point1.z - (Vector1.pointEnd.z - Vector1.pointStart.z);
+	Point3D pointMinusPV(i, j, k);
+	std::cout << "pointMinusPV(" << pointMinusPV.x << ", " << pointMinusPV.y << ", " << pointMinusPV.z << ")   ";
+
+	std::cout << "Summ V, V";
+	int u, o, p;
+	i = Vector1.pointStart.x;
+	j = Vector1.pointStart.y;
+	k = Vector1.pointStart.z;
+	u = i + Vector1.pointEnd.x + (Vector2.pointEnd.x - Vector2.pointStart.x);
+	o = j + Vector1.pointEnd.y + (Vector2.pointEnd.y - Vector2.pointStart.y);
+	p = k + Vector1.pointEnd.z + (Vector2.pointEnd.z - Vector2.pointStart.z);
+	Point3D point3Start(i, j, k);
+	Point3D point3End(u, o, p);
+	Vector3D VectorSumm(point3Start, point3End);
+	std::cout << "VectorSumm" << "(" << VectorSumm.pointStart.x << ", " << VectorSumm.pointStart.y << ", " << VectorSumm.pointStart.z << ", " << VectorSumm.pointEnd.x << ", " << VectorSumm.pointEnd.y << ", " << VectorSumm.pointEnd.z << ")";
+}
+
+
